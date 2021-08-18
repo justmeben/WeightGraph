@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Plot Graph</title>
+        <meta name="description" content="">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js" integrity="sha512-asxKqQghC1oBShyhiBwA+YgotaSYKxGP1rcSYTDrB0U6DxwlJjU59B67U8+5/++uFjcuVM8Hh5cokLjZlhm3Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <style>
+            body{
+                background: #333;
+                color: #eeeeee;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                padding-left: 20px;
+                text-align: center;
+            }
+            textarea{
+                border-radius: 5px;
+                background: #444;
+                border: 1px solid #222;
+                outline: none;
+                color: #eee;
+                transition: .2s ease;
+            }
+            textarea:focus{
+                border: 1px solid #7670e6;
+            }
+
+            .hidden{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <h1>Plot Graph by Bentzy</h1>
+        <div id='form1'>
+            Raw paste: <br> <br>
+            <textarea rows=20 cols=30></textarea>
+            <br><br>
+            <input onclick="initiate()" type="button" value='Send'>
+        </div>
+
+        <div style='max-height: 250px;'>
+            <canvas id="myChart" width="400" height="200"></canvas>
+        </div>
+
+        <script>
+            function initiate(){
+                let parsed_data = getParsedData()
+                let dates = []
+                let values = []
+                parsed_data.forEach((row) => {
+                    dates.push(row[1])
+                    values.push(row[0])
+                })
+
+                hideForm()
+                populateChart(dates, values)
+            }
+
+            function getParsedData(){
+                let raw = document.querySelector('textarea').value
+                let raw_splitted=raw.split('\n').reverse()
+                let parsed = []
+                raw_splitted.forEach((r) => {
+                    parsed.push(r.replace('[', '').replace(']', '').split(' ').filter((e) => {return e != ''}))
+                })
+                parsed = parsed.filter((e) => {return e.length != 0})
+                return parsed
+            }
+
+            function hideForm(){
+                document.getElementById('form1').classList.add('hidden')
+            }
+
+            function populateChart(dates, values){
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Weight',
+                            data: values,
+                            backgroundColor: [
+                                '#7670e6',
+                            ],
+                            borderColor: [
+                                '#7670e6',
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
