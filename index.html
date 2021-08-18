@@ -7,9 +7,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Plot Graph</title>
+        <title>Plotting a Graph</title>
         <meta name="description" content="">
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js" integrity="sha512-asxKqQghC1oBShyhiBwA+YgotaSYKxGP1rcSYTDrB0U6DxwlJjU59B67U8+5/++uFjcuVM8Hh5cokLjZlhm3Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <style>
             body{
@@ -22,13 +22,28 @@
             textarea{
                 border-radius: 5px;
                 background: #444;
-                border: 1px solid #222;
+                border: 2px solid #222;
                 outline: none;
                 color: #eee;
                 transition: .2s ease;
             }
             textarea:focus{
-                border: 1px solid #7670e6;
+                border: 2px solid #7670e6;
+            }
+
+            input[type='button']{
+                background: #7670e6;
+                color: #eee;
+                border: 2px solid #5853ac;
+                font-size: 24px;
+                padding: 15px 40px;
+                border-radius: 125px;
+                transition: .2s ease;
+                cursor: pointer;
+            }
+
+            input[type='button']:hover{
+                background: #8884dc;
             }
 
             .hidden{
@@ -40,7 +55,7 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <h1>Plot Graph by Bentzy</h1>
+        <h1>Its ya boi Bentzy</h1>
         <div id='form1'>
             Raw paste: <br> <br>
             <textarea rows=20 cols=30></textarea>
